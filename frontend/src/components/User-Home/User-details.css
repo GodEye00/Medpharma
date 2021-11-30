@@ -1,0 +1,172 @@
+div#user-details {
+    background-color: rgb(0, 128, 11);
+    width: 80%;
+    height: fit-content;
+    margin: 0% 5% 1% 10%;
+    float: left;
+    box-shadow:  1px 1px 1px 1px #777777;
+    font-family: sans-serif, Georgia, 
+    'Times New Roman', Times, serif;
+    border-radius: 5%;
+    color: blue;
+
+}
+
+div.user-name {
+    margin: 0 0 0 25%;
+    padding: 2% 0 1% 2%;
+    height: 80px;
+    float: left;
+    font-weight: bold;
+    font-size: 25px;
+    
+    width: 45%;
+    
+
+
+}
+
+div.user-name > span.user-title {
+    float: left;
+}
+
+div.user-name > span.user-firstname {
+    float: left;
+    margin-left: 3%
+}
+
+div.user-name > span.user-lastname {
+    float: right;
+    margin-right: 30%;
+    
+}
+
+div.date-created {
+    margin: 0% 0% 0% 1%;
+    height: 60px;
+    width: 45%;
+    float: left;
+
+
+}
+
+div.last-update {
+    margin: 0% 1% 0% 1%;
+    float: right;
+    height: 60px;
+    width: 45%;
+}
+
+div.created-updated {
+    float: left;
+    height: 60px; 
+    width: 100%;
+}
+
+ div#user-details > span.your-symptoms {
+    margin: 4% 0% 0% 7%;
+    width: 30%;
+    height: 50px;
+    font-size: 32px;
+    float: left;
+}
+
+div#user-details >  span.your-consultation {
+    margin: 4% 7% 0 10%;
+    width: 30%;
+    height: 50px;
+    font-size: 32px;
+    float: right; }
+
+div#symptoms {
+    margin: 3% 0% 3% 1%;
+    height: 100px;
+    width:45%; 
+    float: left;
+    border: rgb(0, 195, 255) solid 2px;
+    border-radius: 20%;
+    text-align: center;
+    padding: 2%;
+    background-color: rgb(0, 153, 255);
+
+
+
+}
+
+div.consults {
+    margin: 3% 1% 3% 0%;
+    background-color: rgb(0, 153, 255);
+    height: 100px;
+    width: 45%; 
+    float: right;
+    border: rgb(0, 195, 255) solid 2px;
+    border-radius: 20%;
+    text-align: center;
+    padding: 2%;
+
+}
+
+
+
+ div.consults:hover, .symptoms:hover {
+
+    border: rgb(0, 60, 255) solid 2px;
+
+    }
+
+ div.symptoms:active {
+
+    border: blue solid 3px;
+    
+        }
+
+div.updateSymptom {
+    margin: 3% 0% 0 5%;
+    float: left; 
+     
+    
+        }
+
+p.new-box {
+    color: blue;
+    width: 50%;
+    height: 100px;
+} 
+
+textarea#type-symp {
+    display: none;
+    width: 45%;
+    height: 100px;
+    float: left;
+    margin: 2% 0 0 3%;
+    border-radius: 20%;
+    border: 2px inset rgb(0, 119, 255) ;
+    padding: 3%;
+
+}
+
+textarea#type-symp:hover {
+    border: blue 2px inset;
+
+}
+
+textarea#type-symp:active {
+    border: rgb(36, 128, 0) 2px inset;
+
+}
+
+div#text {
+    display: none;
+    width: 50%;
+    height: 6%;
+    background-color: white;
+    float: left;
+    margin-left: 5%;
+    margin-top: 2%;
+}
+
+
+
+
+
+

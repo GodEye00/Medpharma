@@ -1,0 +1,24 @@
+div.Body {
+  
+    height: 1000px;
+
+}
+
+
+div.SecSec {
+    height: 1250%;
+    margin: 2855% 125% 0 125%;
+}
+
+div.Footer {
+    height: 940%;
+    margin: 4105% 125% 0 125%;
+}
+
+div.test {
+    float: left;
+    height: 600px;
+    width: 30%;
+    margin-top: 0%;
+
+}

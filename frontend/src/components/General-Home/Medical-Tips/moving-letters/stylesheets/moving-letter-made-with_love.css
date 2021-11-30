@@ -1,0 +1,24 @@
+
+
+
+
+.ml16 {
+  color: #402d2d;
+  padding: 40px 0;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  overflow: hidden;
+  font-size: 24px;
+}
+
+
+
+
+
+
+.ml16 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+

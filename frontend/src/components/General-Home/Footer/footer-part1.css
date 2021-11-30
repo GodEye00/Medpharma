@@ -1,0 +1,48 @@
+
+div#footerOne {
+    float: left; 
+    margin: 5% 0 0 3%;
+    width: 50%;
+    height: 60%;
+
+    
+}
+
+div#footerOne > a > img.logo {
+    height: 30%; width: 20%;
+    float: left;
+}
+
+div.contacts {
+    font-size: 20px; font-family: sans-serif;
+    color: darkslategrey; 
+    float: right;
+    width: 70%;
+    height: 90%;
+    margin-right: 8%;
+
+   
+    
+}
+
+div.contacts a div.cont {
+    color: darkslategrey;
+}
+
+div > img.contact-image {
+    float: left;
+    width: 7%;
+    height: 70%;
+    margin-right: 5%;
+    margin-top: 1%;
+}
+
+div > img.contact-image > span {
+    float: right;
+    
+  
+}
+
+div.cont{
+    height: 40%;
+}

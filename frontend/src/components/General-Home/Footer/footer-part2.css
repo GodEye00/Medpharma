@@ -1,0 +1,31 @@
+div.footer-more-info {
+    float: right; 
+    margin: 5% 0 0 0;
+    font-family: sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    display: inline;
+    width: 45%;
+    height: 30%;
+
+
+}
+
+div.footer-more-info a.footer-info-data {
+    color: green;
+    margin-left: 15px;
+}
+
+
+
+
+
+div.footer-more-info > a:hover {
+            background-color: green;
+            color: white;
+            font-weight: bolder;
+            margin-left: 10px;
+            transition: width 10s linear 10s;
+           
+
+}

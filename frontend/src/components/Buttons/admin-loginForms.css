@@ -1,0 +1,11 @@
+div#admin-login {
+    width: 50%;
+    height: 50%;
+    margin-top: 7%;
+    border-radius: 5%;
+    background-color: green;
+}
+
+input.log {
+    margin-bottom: 5%;
+}

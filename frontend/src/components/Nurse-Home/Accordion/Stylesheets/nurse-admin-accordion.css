@@ -1,0 +1,54 @@
+
+div#nus-consults {
+
+    margin: 5% 1% 1% 35%;
+    border: 2px solid blue;
+    background-color: pink;
+    width: 50%;
+    height: 50px;
+    border-radius: 20%;
+    padding: 5%;
+    background-color: rgb(0, 255, 255);
+    text-align: center;
+}
+
+
+
+div#nus-doc-nam {
+    float: left;
+    margin-top: 10%;
+    margin-left: 10%;
+    border: 2px solid blue;
+    border-radius: 20%;
+    padding: 1%;
+    width: 20%;
+    height: 1%;
+    background-color: rgb(0, 174, 255);
+
+}
+
+
+div#nus-u-nam {
+    float: right;
+    margin-top: 3%;
+    margin-right: 70%;
+    border: 2px solid blue;
+    border-radius: 20%;
+    padding: 1%;
+    width: 20%;
+    height: 1%;
+    background-color: rgb(0, 174, 255);
+
+}
+
+button#nus-email {
+    height: 10%;
+    width: 20%;
+    margin: 2% 10% 2% 0%;
+    float: right;
+}
+
+
+
+
+

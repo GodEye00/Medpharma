@@ -1,0 +1,40 @@
+button#patient {
+    float: left;
+    margin: 2% 40% 5% 30%;
+    height: 200px;
+    width: 30%;
+    opacity: 0.5;
+    font-size: 40px;
+
+
+}
+
+button#doctor {
+    float: left;
+    margin: 1% 40% 5% 30%;
+    height: 200px;
+    width: 30%;
+    opacity: 0.5;
+    font-size: 40px;
+
+}
+
+button#nurse {
+        float: left;
+        margin: 1% 40% 5% 30%;
+        height: 200px;
+        width: 30%;
+        opacity: 0.5;
+        font-size: 40px;
+    
+    
+}
+
+div#create-patient, div#create-doctor {
+    display: none;
+    width: 100%;
+    height: max-content;
+    float: left;
+}
+
+

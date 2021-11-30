@@ -1,0 +1,13 @@
+
+div#top-greetings {
+    font-size: 125%; 
+    font-family: Georgia, 'Times New Roman',
+     Times, serif, Verdana, Geneva, Tahoma, 
+     sans-serif, sans-serif, 'Lucida Sans', 
+    'Lucida Sans Regular', 'Lucida Grande', 
+    'Lucida Sans Unicode', Geneva, Verdana,
+     sans-serif; font-weight: bolder;
+     margin: 313%; z-index: 100;
+
+     background-color: green;
+}

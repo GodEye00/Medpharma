@@ -1,0 +1,27 @@
+header {
+    width: 20%;
+    height: 100px;
+    float: left;
+    margin-left: 5%;
+    z-index: 100;
+
+    }
+
+
+header > h1 {color: rgb(255, 72, 0); 
+                font-family: sans-serif, Georgia, 
+                'Times New Roman', Times, serif;
+                font-weight: bolder;
+                font-size: 20px;
+                float: right;
+                margin: 13% 5% 0 0;
+
+            }
+            
+                
+
+header > img.header-image {width: 40%; height: 50px;
+                      margin: 10% 0 0 0; float: left;
+             }
+
+             

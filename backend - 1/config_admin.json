@@ -1,0 +1,13 @@
+﻿{
+    "connectionString":"mongodb+srv://Nurain:dawuda32244@cluster0.kvumk.mongodb.net/Nursedb?retryWrites=true&w=majority",
+    "secret": "dawuda32244",
+    "emailFrom": "info@node-mongo-signup-verification-api.com",
+    "smtpOptions": {
+        "host": "smtp.ethereal.email",
+        "port": 587,
+        "auth": {
+            "user": "katelynn.abernathy@ethereal.email",
+            "pass": "jsFQ9fjYc2m6mPctPQ"
+        }
+    }
+}

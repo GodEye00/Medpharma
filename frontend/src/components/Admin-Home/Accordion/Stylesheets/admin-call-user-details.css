@@ -1,0 +1,115 @@
+div#user-box {
+    background-color: rgb(0, 217, 255);
+    width: 100%;
+    height: 740px;
+    float: left;
+    font-family: sans-serif, Georgia, 
+    'Times New Roman', Times, serif;
+    
+
+}
+
+div#user-nme {
+    margin: 0 0 0 30%;
+    padding: 2% 0 1% 2%;
+    height: 10%;
+    float: left;
+    font-weight: bold;
+    font-size: 22px;
+      
+    width: 70%;
+
+
+}
+
+div#user-nme > span#user-ttl {
+    float: left;
+    margin-right: 3%;
+}
+
+div#user-nme > span#user-fname {
+    float: left;
+    margin-left: 3%;
+ 
+
+}
+
+div#user-nme > span#user-lname {
+    float: left;
+    margin-left: 5%;
+    
+}
+
+div#dte-crtd, div.dte-crtd {
+    margin: 0% 3% 0 2%;
+    height: 100%;
+    width: 45%;
+    float: right;
+
+
+}
+
+div#lst-upd, div.lst-upd {
+    margin: 0% 0% 0 3%;
+    float: left;
+    height: 100%;
+    width: 45%;
+}
+
+ div#user-box > span#yor-symp {
+    margin: 2% 30% 0 30%;
+    width: 30%;
+    height: 10%;
+    font-size: 25px;
+    font-weight: bolder;
+    float: left;
+}
+
+div#user-box >  span#yor-const {
+    margin: 5% 30% 0 30%;
+    width: 50%;
+    height: 10%;
+    font-size: 25px;
+    font-weight: bolder;
+    float: left;
+   }
+
+div#symp {
+    margin: 28% 10% 0 10%;
+    background-color: white;
+    height: 20%;
+    width: 80%; 
+    border: rgb(0, 183, 255) solid 2px;
+    padding: 10%;
+    border-radius: 20%;
+
+}
+
+div#const {
+    margin: 12% 10% 0 10%;
+    background-color: white;
+    height: 20%;
+    width: 80%; 
+    border: rgb(0, 183, 255) solid 2px;
+    padding: 10%;
+    border-radius: 20%;
+
+}
+
+
+
+div#const:hover, div#symp:hover {
+
+    border: blue solid 2px;
+
+    }
+
+    div#const:active, div#symp:active {
+
+    border: green solid 2px;
+    
+        }
+
+
+
+

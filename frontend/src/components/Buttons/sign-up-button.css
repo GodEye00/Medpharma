@@ -1,0 +1,33 @@
+
+div > button.signUpLogout-button {
+    float: left;
+    height: 70px;
+    width: 50%;
+    margin-left: 2%;
+    margin-top: 10%;
+}
+
+div.sign-box {
+    z-index: 100;
+    background-color: green;
+}
+
+div.container div.modal div.modal-dialog div.modal-content{
+    width: 150%;
+   
+}
+
+div.container div.modal div.modal-dialog 
+div.modal-content div.modal-header button {
+  margin-right: 20%;
+}
+
+div.container div.modal div.modal-dialog 
+div.modal-content div.modal-header h4.modal-title {
+    margin-right: 35%;
+    color: green;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+    

@@ -1,0 +1,24 @@
+button#del {
+    width: fit-content;
+    height: max-content;
+    background-color: rgb(255, 81, 0);
+    float: right;
+    margin-right: 5%;
+    margin-top: 3%;
+    border-radius: 20%;
+    padding: 2%;
+
+
+}
+
+button#del:hover {
+    background-color: rgb(255, 38, 0);
+
+}
+
+button#del:hover {
+    background-color: red;
+
+}
+
+

@@ -1,0 +1,44 @@
+button#update, button#sub-mit {
+    width: 15%;
+    height: 15%;
+    margin-top: 2%;
+    margin-left: 3%;
+
+}
+
+button#sub-mit {
+    display: none;
+    float: left;
+    margin-left: 10%;
+}
+
+
+
+button#change, button#send {
+    width: 15%;
+    height: 15%;
+    margin: 6% 6% 10% 3%;
+    background-color: rgb(0, 162, 255);
+    border: 2px outset blue;
+    border-radius: 20%;
+    float: right;
+    padding: 1%;
+}
+
+button#send {
+    display: none;
+    float: left;
+    margin-left: 10%;
+    
+}
+
+
+button#change:hover, button#send:hover {
+    background-color: rgb(0, 102, 255);
+
+}
+
+button#change:active, button#send:active {
+    background-color: rgb(0, 81, 255);
+
+}

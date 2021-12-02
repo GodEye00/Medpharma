@@ -15,10 +15,9 @@ div#footerOne > a > img.logo {
 
 div.contacts {
     font-size: 20px; font-family: sans-serif;
-    color: darkslategrey; 
+    color: white; 
     float: right;
     width: 70%;
-    height: 90%;
     margin-right: 8%;
 
    
@@ -26,7 +25,7 @@ div.contacts {
 }
 
 div.contacts a div.cont {
-    color: darkslategrey;
+    color: white;
 }
 
 div > img.contact-image {

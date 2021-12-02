@@ -24,7 +24,6 @@ class AdminAccount extends React.Component {
  
     window.addEventListener('load', () => {  
 
-        alert("calling function AdminAccount")
 
 
         $('#nurse-doc-sign-up').on( 'submit', function(e) {
@@ -70,11 +69,8 @@ class AdminAccount extends React.Component {
                     
                     fail: function() { 
                 
-                            swal('error', 'Failed', 'Sorry, something went wrong. Please sign up again')
-                
-                
-                           
-                        
+                            swal('error', 'Failed', 'Sorry, something went wrong. Please sign up again')               
+                            
                     },
                 
                     error: function(data) {

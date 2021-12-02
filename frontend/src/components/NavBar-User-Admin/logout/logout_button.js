@@ -2,6 +2,7 @@ import $ from "jquery"
 import "jquery"
 
 import signout from "../../Api-create-update-delete/logout"
+import swal from "../../../Javascripts/Swal"
 
 import "../../Buttons/loginForms.css"
 import "../../Buttons/sign-up-button.css"  
@@ -10,22 +11,78 @@ import "./logout_button.css"
 
 function logout() {
 
+    window.addEventListener('load', () => {
 
-    $('#logout').on('submit', function(e) {
+        var account = JSON.parse(sessionStorage.getItem("account"))
+
+        var token = account.jwtToken  
+
+
+    $('#logout').on('click', function(e) {
 
         e.preventDefault()
         
-        signout()
 
+        
+        $.ajax ({
+            type: "POST",
+            url: "http://localhost:4000/accounts/revoke-token",
+            headers: {"Authorization" : "Bearer " + token},
+            
+            dataType: "json ",
+           
+             async: false,
+            timeout: 200,
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function(xhr) { 
+                swal('question', 'Logout', 'Are you sure you want to logout?')
+        
+            },
+        
+            complete: function() {
+          
+            },
+            
+        
+            success : function(data) {
+        
+                window.open("http://localhost:3000/home", "_self") 
+              
+                },
+        
+            
+            fail: function() { 
+        
+                    swal('error', 'Error', 'Something went wrong. Please retry')
+        
+        
+                   
+                
+            },
+        
+            error: function(data) {
+        
+                swal('error', 'Error', 'Something went wrong. Retry' + JSON.stringify(data))
+            }
+        
+        
+        
+            }) 
+                
+      
+      
     })
+
+})
 
     return (
 
         <div>
 
         <button id="logout" 
-        className="loginLogoutCreateUpdateDeleteFormSubmit"
-        type ="submit">
+        className="loginLogoutCreateUpdateDeleteFormSubmit">
             Logout</button>
 
             </div>

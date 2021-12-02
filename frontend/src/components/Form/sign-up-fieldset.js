@@ -29,7 +29,7 @@ function signUpField() {
     <legend>CREATE AN ACCOUNT</legend>
 
 <label for="title" class="title">Title</label><br />
- <select id="title" name="title" >
+ <select id="title" name="title" required>
      <option value="chosee your title">Please choose a title</option>
      <option value="officer1"  >Dr. </option>
      <option value="officer1"  >Phd. </option>
@@ -45,22 +45,22 @@ function signUpField() {
  <br />
 
 <label for="fname" class="sign-up-form-fname">First Name:</label><br />
-<input type="text" name="firstName" class="name"  
+<input type="text" name="firstName" class="name"  required
 placeholder = "eg. Nurain"
 /><br />
 
 <label for="lname" class="sign-up-form-lname">Last Name:</label><br />
-<input type="text" name="lastName" class="name" 
+<input type="text" name="lastName" class="name" required
 placeholder = "eg. Dawuda"
 /><br />
 
 <label for="email" class="sign-up-form-email">Email:</label><br />
-<input type="email" name="email" class="email" 
+<input type="email" name="email" class="email" required
 placeholder="eg. lawson@gmail.com"
 /><br />
 
 <label for="pwd" class="sign-up-form-pwd">Password:</label><br />
-<input type="password" name="password" id="pwd" class="pwd"
+<input type="password" name="password" id="pwd" class="pwd"required
 />  
 <br />
 
@@ -68,25 +68,25 @@ placeholder="eg. lawson@gmail.com"
 <label for="showPwd">show</label>  */ }
 
 <label for="pwd" class="sign-up-form-pwd">Confirm Password:</label><br />
-<input type="password" name="confirmPassword" class="pwd" id="pwd" />
+<input type="password" name="confirmPassword" class="pwd" id="pwd" required/>
 <br />
 
 { /* <input type="checkbox" id="shwPwd" onclick = "toggle()" />
 <label for="showPwd">show</label>  */ }
 
 <label for="officer" class="sign-up-form-officer">Choose Doctor</label><br />
- <select id="doctor" name="doctor" >
+ <select id="doctor" name="doctor" required>
      <option value="chosee doctor">Please choose a doctor</option>
      <option value="officer1" selected >Dr. Bernard Same</option>
  </select>
  <br />
 
 <label for="date" class="sign-up-form-date">Book Appointment Date</label><br />
-<input type="date" name="bookDate" class="sign-up-form-date" 
+<input type="date" name="bookDate" class="sign-up-form-date" required
 /><br />
 
 <label for="textarea" class="sign-up-form-text">Details of Symptoms:</label><br />
-<textarea name="symptoms" id="bio" rows="10" cols="30"></textarea>
+<textarea name="symptoms" id="bio" rows="10" cols="30" required></textarea>
 <br />
 <br />
 <br />

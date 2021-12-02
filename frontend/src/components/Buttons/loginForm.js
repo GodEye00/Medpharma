@@ -13,17 +13,18 @@ function AdminLoginForm() {
 
         var ssoAction = function (data) { 
 
-            if(data.role === "Nurse") {
+            if(data.role === "Admin") {
 
-                window.open("http://localhost:3000/nurse", "_self") 
+                window.open("http://localhost:3000/admin", "_self") 
             }
       
-         else if (data.role === "Doctor") {
-            window.open("http://localhost:3000/admin", "_self") 
+         else  {
+            window.open("http://localhost:3000/user", "_self") 
          }
 
     }
 
+    
         
 
      
@@ -41,7 +42,7 @@ $('#admin-login-Form').on( 'submit', function(e) {
 
     $.ajax ( {
     type: "POST",
-    url: "http://localhost:5000/admin_accounts/authenticate",
+    url: "http://localhost:4000/accounts/authenticate",
     data: form.serialize(),
     
     dataType: " json ",

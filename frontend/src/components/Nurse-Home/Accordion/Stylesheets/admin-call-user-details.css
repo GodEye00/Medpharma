@@ -1,7 +1,6 @@
-div#user-box {
-    background-color: green;
+div#user-box, div#user-box1, div#user-box2 {
     width: 100%;
-    height: 740px;
+    height: max-content;
     float: left;
     font-family: sans-serif, Georgia, 
     'Times New Roman', Times, serif;
@@ -12,12 +11,12 @@ div#user-box {
 div#user-nme {
     margin: 0 0 0 30%;
     padding: 2% 0 1% 2%;
-    height: 10%;
+    height: max-content;
     float: left;
     font-weight: bold;
     font-size: 22px;
       
-    width: 70%;
+    width: max-content;
     
 
 
@@ -57,26 +56,29 @@ div#lst-upd {
     width: 15%;
 }
 
- div#user-box > span#yor-symp {
+ div#user-box > span#yor-symp, 
+ div#user-box1 > span#yor-symp, 
+ div#user-box2 > span#yor-symp  {
     margin: 2% 30% 0 30%;
-    width: 30%;
-    height: 10%;
+    width: max-content;
+    height: max-content;
     font-size: 25px;
     font-weight: bolder;
     float: left;
 }
 
-div#user-box >  span#yor-const {
+div#user-box >  span#yor-const,
+ div#user-box1 > span#yor-symp,
+ div#user-box2 > span#yor-symp  {
     margin: 5% 30% 0 30%;
-    width: 50%;
-    height: 10%;
-    font-size: 25px;
+    width: max-content;
+    height: max-content;
     font-weight: bolder;
+    font-size: 25px;
     float: left;}
 
 div#symp {
-    margin: 28% 10% 0 10%;
-    height: 20%;
+    margin: 32% 3% 0 10%;
     width: 80%; 
     border: rgb(0, 183, 255) solid 2px;
     padding: 10%;
@@ -108,6 +110,13 @@ div#const:hover, div#symp:hover {
     border: green solid 2px;
     
         }
+
+button#email-change,button#emailchange  {
+    width: 25%;
+    height: max-content;
+    margin: 3% 0 5% 12%;
+}
+
 
 
 

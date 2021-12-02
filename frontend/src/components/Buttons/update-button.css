@@ -1,4 +1,4 @@
 button#update-details {
-    width: 28%;
-    height: 20%;
+    width: max-content;
+    height: fit-content;
 }

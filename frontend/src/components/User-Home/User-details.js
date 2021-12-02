@@ -19,7 +19,6 @@ function userDetails() {
         var symp = $("#symptoms")
         var submit = $("#sub-mit")
         var update = $("#update")
-
  
 
     update.on('click', () => {
@@ -31,84 +30,81 @@ function userDetails() {
 
     })
 
-    submit.on('submit', (e) => {
-
-
-            
-    e.preventDefault()
-  
-  
-  function makeBaseAuth(user, pswd){ 
-      var token = user + ':' + pswd;
-      var hash = "";
-      if (btoa) {
-         hash = btoa(token);
-      }
-      return "Basic " + hash;
-   }
-  
-   var mail = $('.email').val().toString()
-   var pwd = $('.pwd').val().toString()
-      
-  
-      $.ajax ( {
-      type: "PUT",
-      url: "http://localhost:4000/accounts/:" + accounts.id,
-      data: accounts,
-      
-      dataType: " json ",
-     
-       async: false,
-      timeout: 5000,
-      xhrFields: {
-          withCredentials: true
-      },
-      beforeSend: function(xhr) { 
-          xhr.setRequestHeader('Authorization', makeBaseAuth(mail, pwd));
-  
-      },
-  
-      complete: function() {
+    let my_text = text_appear.value
+ 
     
-      },
+
+  
+      submit.on('click', function() {
+     
+    $.ajax ( {
+        type: "PUT",
+        url: "http://localhost:4000/accounts/:" + accounts.id,
+     //   headers: {"Authorization" : "Bearer " + token},
+        dataType: " json ",
+        data: {
+            title: accounts.title,
+            firstName: accounts.firstName,
+            lastName: accounts.lastName,
+            email: accounts.email,
+            symptoms: accounts.symptoms,
+            consultation: my_text,
+            bookDate: accounts.dateBooked,
+            doctor: accounts.doctor
+        },
+       
+         async: false,
+        timeout: 200,
+        xhrFields: {
+            withCredentials: true
+        },
+        beforeSend: function(xhr) { 
+            
+        },
+    
+        complete: function() {
       
-  
-      success : function(data) {
-  
-        swal('info', 'Symptom Submitted', 'Thnak you for your submition')
+        },
         
+    
+        success : function(data) {
+    
+            swal('success', 'Submitted', 'Updated symptoms sent!')
 
-        text.css('display', 'none')
-        symp.css('display', 'block')
-        text_appear.css('display', 'none')
-        update.css('display', 'block')
-        submit.css('display', 'none')
-  
-          },
-  
-      
-      fail: function() { 
-  
-              swal('error', 'Failed', 'Something failed to submit. Please retry')
-  
-  
-             
-          
-      },
-  
-      error: function() {
-  
-          swal('error', 'Error', 'Something went wrong. Retry')
-      }
-  
-  
-  
-      }) 
-  
-      e.preventDefault()
-  
+            symp.text(data.symptoms)
+            submit.css('display', 'none')
+            text.css('display', 'none')
+            text_appear.css('display', 'none')
+            update.css('display', 'block')
+            
+    
+    
+            },
+    
+        
+        fail: function() { 
+    
+                swal('error', 'Sorry', 'Something went wrong. Retry')
+    
+    
+               
+            
+        },
+    
+        error: function() {
+    
+            swal('error', 'Error', 'Something went wrong. Retry')
+        }
+    
+    
+    
+        }) 
+               
 
-    })
+    
+
+})
+
 
 })
 
@@ -124,11 +120,11 @@ function userDetails() {
     return (
         <div id="user-details"> 
         
-        <div className="user-name"><span className="user-title"><h2>{accounts.title}</h2></span>
+        <div className="userame"><span className="user-title"><h2>{accounts.title}</h2></span>
                 <span className="user-firstname"><h2>{accounts.firstName}</h2></span>
                 <span className="user-lastname"><h2>{accounts.lastName}</h2></span></div>
-            <div className="created-updated"><div className="date-created"><h5>Updated Date:</h5><h6>{accounts.updated}</h6></div>
-            <div className="last-update"><h5>Booked Date:</h5><h6>{accounts.booked}</h6></div></div>
+            <div className="created-updated"><div className="date-created"><h5>Date Created:</h5><h6>{accounts.created}</h6></div>
+            <div className="last-update"><h5>Booked Date:</h5><h6>{accounts.bookDate}</h6></div></div>
             <span className="your-symptoms"> Your Symptoms</span>
             <span className="your-consultation"> Your Consultation</span>
             <div id="text">Enter your most current symptoms below</div>
@@ -137,7 +133,7 @@ function userDetails() {
             <div className="consults">{accounts.consultation}</div> 
             <button id="update" className="loginLogoutCreateUpdateDeleteFormSubmit">
                 Update Symptoms</button>
-            <button id="sub-mit" className="loginLogoutCreateUpdateDeleteFormSubmit" type="submit">
+            <button id="sub-mit" className="loginLogoutCreateUpdateDeleteFormSubmit" >
                Submit </button>
             <CreateUpdateDelete /> 
             

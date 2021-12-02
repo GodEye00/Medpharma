@@ -11,11 +11,9 @@ import "../Stylesheets/admin-call-user-details.css"
 
 
 import CreateAccount from "../../../Buttons/patient-doctor-buttons"
-import _delete from "../../../Api-create-update-delete/admin-delete"
 import   AdminUpdateDelete from "../../../Api-create-update-delete/admin-update-delete"
-import Footer from "../../../General-Home/Footer/final-footer"
-import users from "../../../Admin-Home/Accordion/Javascript/getAllUser"
 import swal from "../../../../Javascripts/Swal"
+import Footer from "../../../General-Home/Footer/final-footer"
 import { render } from "@testing-library/react"
 
 
@@ -57,20 +55,17 @@ class AdminAccordion extends React.Component {
                 },
                 beforeSend: function() { 
 
-                    alert("Before calling")
+               
             
                 },
             
                 complete: function() {
-                    alert("Completed")
+               
               
                 },
                 
             
-                success : function(data) {
-        
-                    swal('success', 'Success!', "All users have been called successfully")  
-                    alert("success")
+                success : function(data) {             
 
                     user_account = data
                                         
@@ -79,7 +74,7 @@ class AdminAccordion extends React.Component {
                 
                 fail: function() { 
             
-                        swal('error', 'Failed', 'Sorry, something went wrong. Please sign up again')
+                        swal('error', 'Failed', 'Sorry, unable to load data')
             
             
                        
@@ -88,7 +83,7 @@ class AdminAccordion extends React.Component {
             
                 error: function(data) {
             
-                    swal('error', 'Error', JSON.stringify(data) )
+                    swal('error', 'Error', "Sorry, unable to reach database" )
                 }
             
             
@@ -114,12 +109,11 @@ $.ajax ( {
     },
     beforeSend: function() { 
 
-        alert("Before calling")
+  
 
     },
 
     complete: function() {
-        alert("Completed")
   
     },
     
@@ -127,7 +121,7 @@ $.ajax ( {
     success : function(data) {
 
         swal('success', 'Success!', "All users have been called successfully")  
-        alert("success")
+      
 
         doc_account = data
                             
@@ -175,7 +169,9 @@ $.ajax ( {
         let symptoms = details.symptoms
         let consultation = details.consultation
         let email = details.email
+        let doctor = details.doctor
         let role = details.role
+        let user_token = details.jwtToken
 
     if (role === 'User') { 
 
@@ -191,18 +187,84 @@ $.ajax ( {
         '<div id="user-nme"><span id="user-ttl"><h2>'+ title +'</h2></span>' +
         '<span id="user-fname"><h2>'+ lastName + '</h2></span>' +
         '<span id="user-lname"><h2>' + firstName + '</h2></span></div>' +
-        '<div class="created-updated"><div class="dte-crtd"><h2>Date Patient Created Account</h2><h3>' + dateCreated + '</h3></div>' +
-        '<div class="lst-upd"><h2>Date Patient booked Account</h2><h3>'+ dateBooked +'</h3></div></div>' +
+        '<div class="created-updated"><div class="dte-crtd"><h5>Date Patient Created Account</h5><h6>' + dateCreated + '</h6></div>' +
+        '<div class="lst-upd"><h5>Date Patient booked Account</h5><h6>'+ dateBooked +'</h6></div></div>' +
         '<span id="yor-symp"> Patient Symptoms</span>' +
         '<div id="symp">'+ symptoms + '</div>' +
         '<span id="yor-const"> Your Provided Consultation</span>' +
         '<div id="const">' + consultation + '</div>' +
-        '<button id="del" className="loginLogoutCreateUpdateDeleteFormSubmit" onClick="Del(id)">' +
-        'DELETE  '+ firstName.toUpperCase() +'\'S ACCOUNT</button>'+
-        ' <button id="nus-email" class="loginLogoutCreateUpdateDeleteFormSubmit change">' +
-        '<a class="mailto" href="mailto:" '+ email +
-        '> Send Email to Doctor  ' + firstName + '</a> </button>' +
         '</div>' )
+
+
+        
+        
+        let del = document.createElement("button")
+        del.setAttribute('id', 'delete')
+        del.setAttribute('class','loginLogoutCreateUpdateDeleteFormSubmit')
+        del.textContent = 'DELETE PATIENT '+ firstName.toUpperCase() +'\'S ACCOUNT'
+        let user_box = document.getElementById("user-box")
+
+
+        del.addEventListener('click', function() {
+                alert("nurse user delete called")
+             
+            $.ajax ( {
+                type: "DELETE",
+                url: "http://localhost:4000/accounts/" + id,
+               headers: {"Authorization" : "Bearer " + user_token},
+                dataType: " json ",
+               
+                 async: false,
+                timeout: 200,
+                xhrFields: {
+                    withCredentials: true
+                },
+                beforeSend: function(xhr) { 
+            
+                    swal('question', 'Irreversible action!', 'Are you sure you want to delete your account?')
+            
+                },
+            
+                complete: function() {
+              
+                },
+                
+            
+                success : function(data) {
+            
+                    swal('success', 'Account Deleted!', data)
+            
+            
+                    },
+            
+                
+                fail: function() { 
+            
+                        swal('error', 'Sorry', 'Something went wrong. Retry')
+            
+            
+                       
+                    
+                },
+            
+                error: function() {
+            
+                    swal('error', 'Error', 'Something went wrong. Retry')
+                }
+            
+            
+            
+                }) 
+                       
+       
+            
+
+        })
+
+        user_box.appendChild(del)
+
+
+
 
     }
 
@@ -214,34 +276,106 @@ $.ajax ( {
       '</li>' )
         
         
-        $doc_spec_det.prepend('<div id="user-box">' + 
+        $doc_spec_det.prepend('<div id="user-box1">' + 
         '<div id="user-nme"><span id="user-ttl"><h2>'+ title +'</h2></span>' +
         '<span id="user-fname"><h2>'+ lastName + '</h2></span>' +
         '<span id="user-lname"><h2>' + firstName + '</h2></span></div>' +
-        '<span id="yor-symp"> Patient Symptoms</span>' +
-        '<div id="symp">'+ symptoms + '</div>' +
-        '<span id="yor-const"> Doctor\'s consultation</span>' +
-        '<div id="const">' + consultation + '</div>' +
-        '<button id="del" className="loginLogoutCreateUpdateDeleteFormSubmit" onClick="Del(id)">' +
-        'DELETE  DR. '+ firstName.toUpperCase() +'\'S ACCOUNT</button>'+
+        ' <button id="emailchange" class="loginLogoutCreateUpdateDeleteFormSubmit ">' +
+        '<a class="mailto" href="mailto:" '+ email +
+        '> Send Email to Doctor  ' + firstName + '</a> </button>' +
         '</div>')
+
+        
+        
+        let del = document.createElement("button")
+        del.setAttribute('id', 'delete')
+        del.setAttribute('class','loginLogoutCreateUpdateDeleteFormSubmit')
+        del.textContent = 'DELETE DR. '+ firstName.toUpperCase() +'\'S ACCOUNT'
+        let user_box = document.getElementById("user-box1")
+
+
+        del.addEventListener('click', function() {
+                alert("nurse user delete called")
+             
+            $.ajax ( {
+                type: "DELETE",
+                url: "http://localhost:4000/accounts/" + id,
+               headers: {"Authorization" : "Bearer " + user_token},
+                dataType: " json ",
+               
+                 async: false,
+                timeout: 200,
+                xhrFields: {
+                    withCredentials: true
+                },
+                beforeSend: function(xhr) { 
+            
+                    swal('question', 'Irreversible action!', 'Are you sure you want to delete your account?')
+            
+                },
+            
+                complete: function() {
+              
+                },
+                
+            
+                success : function(data) {
+            
+                    swal('success', 'Account Deleted!', data)
+            
+            
+                    },
+            
+                
+                fail: function() { 
+            
+                        swal('error', 'Sorry', 'Something went wrong. Retry')
+            
+            
+                       
+                    
+                },
+            
+                error: function() {
+            
+                    swal('error', 'Error', 'Something went wrong. Retry')
+                }
+            
+            
+            
+                }) 
+                       
+       
+            
+
+        })
+
+
+        user_box.appendChild(del)
+
+
+
+    }
+
+
+    
 
         $cons_symp.prepend('<div id="doctor-consulation">' +
         '<div id="nus-doc-nam">' +
-        '<h4>  Doctor: '+ title + '  ' + lastName + '  '
-        + firstName + '\'s Consultation</h4></div>'+
+        '<h4>  Doctor: ' + doctor + '\'s Consultation</h4></div>'+
         '<div id="nus-u-nam">' +
         '<h4>  For Patient: '+ title + '  ' + lastName + '  '
         + firstName + '</h4></div>'+
         ' <div id="nus-consults">'+ consultation +
         '</div> <br />  <br />'  +
-        ' <button id="nus-change" class="loginLogoutCreateUpdateDeleteFormSubmit change">' +
+        ' <button id="email-change" class="loginLogoutCreateUpdateDeleteFormSubmit ">' +
         '<a class="mailto" href="mailto:" '+ email +
-        '> Send Email to Doctor  ' + firstName + '</a> </button>')
+        '> Send Email to Doctor  ' + doctor + '</a> </button>')
 
   
 
-    }
+
+    
 
     i++
           
@@ -254,27 +388,98 @@ $.ajax ( {
         let title = details.title
         let firstName = details.firstName
         let lastName = details.lastName
-        let dateCreated = details.created
-        let dateBooked  = details.booked
-        let symptoms = details.symptoms
-        let consultation = details.consultation
         let email = details.email
         let role = details.role
+        let doc_token = details.jwtToken
+
+if (role === "Doctor") {
 
 
+    $doc_ul.prepend( '<li> <div key={'+id+'}> <span><h5>'+ title +' ' + lastName + 
+    '  ' +firstName+ '</h5></span>'  +
+   '</div>' +
+  '</li>' )
+    
+    
+    $doc_spec_det.prepend('<div id="user-box2">' + 
+    '<div id="user-nme"><span id="user-ttl"><h2>'+ title +'</h2></span>' +
+    '<span id="user-fname"><h2>'+ lastName + '</h2></span>' +
+    '<span id="user-lname"><h2>' + firstName + '</h2></span></div>'  +
+    ' <button id="emailchange" class="loginLogoutCreateUpdateDeleteFormSubmit ">' +
+    '<a class="mailto" href="mailto:" '+ email +
+    '> Send Email to Doctor  ' + firstName + '</a> </button>' +
+    '</div>')
 
-        $cons_symp.prepend('<div id="doctor-consulation">' +
-        '<div id="nus-doc-nam">' +
-        '<h4>  Doctor: '+ title + '  ' + lastName + '  '
-        + firstName + '\'s Consultation</h4></div>'+
-        '<div id="nus-u-nam">' +
-        '<h4>  For Patient: '+ title + '  ' + lastName + '  '
-        + firstName + '</h4></div>'+
-        ' <div id="nus-consults">'+ consultation +
-        '</div> <br />  <br />'  +
-        ' <button id="nus-change" class="loginLogoutCreateUpdateDeleteFormSubmit change">' +
-        '<a class="mailto" href="mailto:" '+ email +
-        '> Send Email to Doctor  ' + firstName + '</a> </button>')
+          
+        let del = document.createElement("button")
+        del.setAttribute('id', 'delete')
+        del.setAttribute('class','loginLogoutCreateUpdateDeleteFormSubmit')
+        del.textContent = 'DELETE  DR. '+ firstName.toUpperCase() +'\'S ACCOUNT'
+        let user_box = document.getElementById("user-box2")
+
+
+        del.addEventListener('click', function() {
+                alert("nurse user delete called")
+             
+            $.ajax ( {
+                type: "DELETE",
+                url: "http://localhost:5000/admin_accounts/" + id,
+               headers: {"Authorization" : "Bearer " + doc_token},
+                dataType: " json ",
+               
+                 async: false,
+                timeout: 200,
+                xhrFields: {
+                    withCredentials: true
+                },
+                beforeSend: function(xhr) { 
+            
+                    swal('question', 'Irreversible action!', 'Are you sure you want to delete your account?')
+            
+                },
+            
+                complete: function() {
+              
+                },
+                
+            
+                success : function(data) {
+            
+                    swal('success', 'Account Deleted!', data)
+            
+            
+                    },
+            
+                
+                fail: function() { 
+            
+                        swal('error', 'Sorry', 'Something went wrong. Retry')
+            
+            
+                       
+                    
+                },
+            
+                error: function() {
+            
+                    swal('error', 'Error', 'Something went wrong. Retry')
+                }
+            
+            
+            
+                }) 
+                       
+       
+            
+
+        })
+
+        user_box.appendChild(del)
+
+
+}
+
+     i++
 
     }
 

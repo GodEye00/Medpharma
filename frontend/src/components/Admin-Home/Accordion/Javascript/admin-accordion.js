@@ -11,11 +11,9 @@ import "../Stylesheets/admin-call-user-details.css"
 
 
 import CreateAccount from "../../../Form/Admin-create-account-sign-up-form"
-import _delete from "../../../Api-create-update-delete/admin-delete"
-import   AdminUpdateDelete from "../../../Api-create-update-delete/admin-update-delete"
+import  AdminUpdateDelete from "../../../Api-create-update-delete/admin-update-delete"
 import Footer from "../../../General-Home/Footer/final-footer"
-import submitUser from "./submit_user"
-import users from "./getAllUser"
+
 import swal from "../../../../Javascripts/Swal"
 import { render } from "@testing-library/react"
 
@@ -32,11 +30,11 @@ class AdminAccordion extends React.Component {
 
     var my_account = JSON.parse(sessionStorage.getItem("account"))
 
-            var user_account = {}
+            var user_account = []
 
             var token = my_account.jwtToken     
             
-            alert("Admin Accordion         " + token)
+        
         
         window.addEventListener('load', () => {       
                
@@ -57,20 +55,16 @@ class AdminAccordion extends React.Component {
                                 },
                                 beforeSend: function() { 
         
-                                    alert("Before calling")
                             
                                 },
                             
                                 complete: function() {
-                                    alert("Completed")
                               
                                 },
                                 
                             
                                 success : function(data) {
                         
-                                    swal('success', 'Success!', "All users have been called successfully")  
-                                    alert("success")
 
                                     user_account = data
                                                         
@@ -79,7 +73,7 @@ class AdminAccordion extends React.Component {
                                 
                                 fail: function() { 
                             
-                                        swal('error', 'Failed', 'Sorry, something went wrong. Please sign up again')
+                                        swal('error', 'Failed', "Sorry, Unable to load data" )
                             
                             
                                        
@@ -88,7 +82,7 @@ class AdminAccordion extends React.Component {
                             
                                 error: function(data) {
                             
-                                    swal('error', 'Error', JSON.stringify(data) )
+                                    swal('error', 'Error', "Sorry, unable to reach database" )
                                 }
                             
                             
@@ -162,16 +156,18 @@ class AdminAccordion extends React.Component {
     var us_len = user_account.length
 
 
-    while (i < us_len) {
-        var details = user_account[user_account.length-(i+1)]
-        var id = details.id
-        var title = details.title
-        var firstName = details.firstName
-        var lastName = details.lastName
-        var dateCreated = details.created
-        var dateBooked  = details.bookDate
-        var symptoms = details.symptoms
-        var consultation = details.consultation
+   user_account.forEach(details => { 
+        let id = details.id
+        let title = details.title
+        let firstName = details.firstName
+        let lastName = details.lastName
+        let dateCreated = details.created
+        let dateBooked  = details.bookDate
+        let symptoms = details.symptoms
+        let consultation = details.consultation
+        let email = details.email
+        let doctor = details.doctor
+        let user_token = details.jwtToken
 
         $ul.prepend( '<li> <div key={'+id+'}> <span><h5>'+ title +' ' + lastName + 
                       '  ' +firstName+ '</h5></span>'  +
@@ -185,12 +181,10 @@ class AdminAccordion extends React.Component {
         '<span id="user-lname"><h2>' + firstName + '</h2></span></div>' +
         '<div class="created-updated"><div class="dte-crtd"><h5>Date Patient Created Account</h5><h6>' + dateCreated + '</h6></div>' +
         '<div class="lst-upd"><h5>Date Patient booked Account</h5><h6>'+ dateBooked +'</h6></div></div>' +
-        '<span id="yor-symp"> Patient Symptoms</span>' +
+        '<span id="yorsymp" > Patient Symptoms</span>' +
         '<div id="symp">'+ symptoms + '</div>' +
-        '<span id="yor-const"> Your Provided Consultation</span>' +
+        '<span id="yorconst"> Your Provided Consultation</span>' +
         '<div id="const">' + consultation + '</div>' +
-        '<button id="del" className="loginLogoutCreateUpdateDeleteFormSubmit del">' +
-        'DELETE  '+ firstName.toUpperCase() +'\'S ACCOUNT</button>'+
         '</div>')
 
 
@@ -208,15 +202,26 @@ class AdminAccordion extends React.Component {
         '<button id="send" class="loginLogoutCreateUpdateDeleteFormSubmit send">' +
         'Submit </button>')
 
+        let del = document.createElement("button")
+        del.setAttribute('id', 'delete')
+        del.setAttribute('class','loginLogoutCreateUpdateDeleteFormSubmit')
+        del.textContent = 'DELETE  DR. '+ firstName.toUpperCase() +'\'S ACCOUNT'
+        let submit = document.createElement("button")
+        submit.setAttribute('id', 'send')
+        submit.setAttribute('class', 'loginLogoutCreateUpdateDeleteFormSubmit')
+        let user_box = document.getElementById("user-box")
+        let cons_symp = document.getElementById("cons-symp")
+        let text = document.getElementsByTagName("textarea").textContent
 
-               
-        $spec_det.children('button').on('click', () => {
-        
-            
+        del.addEventListener('click', function() {
+                alert("user I just wrote delete called" )
+
+                let id_here = details.id
+                alert("user " + id_here)
+             
             $.ajax ( {
                 type: "DELETE",
-                url: "http://localhost:4000/accounts/:" + id,
-                headers: {"Authorization" : "Bearer " + token},
+                url: "http://localhost:4000/accounts/:" + id_here,
                 dataType: " json ",
                
                  async: false,
@@ -239,7 +244,6 @@ class AdminAccordion extends React.Component {
             
                     swal('success', 'Account Deleted!', data)
             
-                    window.open("http://localhost:3000/admin", "_self") 
             
                     },
             
@@ -253,22 +257,95 @@ class AdminAccordion extends React.Component {
                     
                 },
             
-                error: function() {
+                error: function(data) {
             
-                    swal('error', 'Error', 'Something went wrong. Retry')
+                    swal('error', 'Error', 'Something went wrong. Retry'+ JSON.stringify(data))
                 }
             
             
             
                 }) 
                        
-            })
+       
             
 
+        })
 
-             i++
+
+        submit.addEventListener('click', function() {
+            alert("user submit called")
+         
+        $.ajax ( {
+            type: "PUT",
+            url: "http://localhost:4000/accounts/:" + id,
+            headers: {"Authorization" : "Bearer " + user_token},
+            dataType: " json ",
+            data: {
+                title: title,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                symptoms: symptoms,
+                consultation: text,
+                bookDate: dateBooked,
+                doctor: doctor
+            },
+           
+             async: false,
+            timeout: 200,
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function(xhr) { 
+                
+            },
+        
+            complete: function() {
           
-    }
+            },
+            
+        
+            success : function(data) {
+        
+                swal('success', 'Account Deleted!', JSON.stringify(dateCreated))
+        
+        
+                },
+        
+            
+            fail: function() { 
+        
+                    swal('error', 'Sorry', 'Something went wrong. Retry')
+        
+        
+                   
+                
+            },
+        
+            error: function() {
+        
+                swal('error', 'Error', 'Something went wrong. Retry')
+            }
+        
+        
+        
+            }) 
+                   
+   
+        
+
+    })
+
+        cons_symp.appendChild(submit)
+
+        user_box.appendChild(del)
+               
+        
+           
+
+
+          
+    })
 
 
 

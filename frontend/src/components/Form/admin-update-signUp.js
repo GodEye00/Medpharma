@@ -13,16 +13,22 @@ function updateSignUpForms() {
 
     window.addEventListener('load', () => {  
 
-        $('#update-sign-up-forms').on( 'submit', function(e) {
+        $('#admin-update-sign-up-forms').on( 'submit', function(e) {
         
             e.preventDefault()
         
         
-            var form = $("#update-sign-up-forms")
+            var form = $("#admin-update-sign-up-forms")
+        
+
+             var url = "http://localhost:4000/accounts/" + account.id 
+             var ad_url = "http://localhost:5000/admin_accounts/" + account.id 
+
+             account.Role = 'Nurse' ?
         
                 $.ajax ( {
                 type: "PUT",
-                url:  "http://localhost:4000/accounts/" + account.id,
+                url: ad_url,
                 data: form.serialize() ,
                 headers: {"Authorization" : "Bearer " + token},
 
@@ -62,16 +68,69 @@ function updateSignUpForms() {
                 error: function(data) {
             
                     swal('error', 'Error', 'Sorry, something went wrong. Please sign up again' + JSON.stringify(data))
-                }          
+                }
+            
+            
+            
+                }) 
+
+                : 
+
+                $.ajax ( {
+                    type: "PUT",
+                    url: url,
+                    data: form.serialize() ,
+                    headers: {"Authorization" : "Bearer " + token},
+
+                    
+                    dataType: " json ",
+                   
+                     async: false,
+                    timeout: 5000,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    beforeSend: function(xhr) { 
+                
+                    },
+                
+                    complete: function() {
+                  
+                    },
+                    
+                
+                    success : function(data) {
+            
+                        swal('success', 'Success!', data)                         
+                
+                        },
+                
+                    
+                    fail: function() { 
+                
+                            swal('error', 'Failed', 'Sorry, something went wrong. Please sign up again')
+                
+                
+                           
+                        
+                    },
+                
+                    error: function(data) {
+                
+                        swal('error', 'Error', 'Sorry, something went wrong. Please sign up again' + JSON.stringify(data))
+                    }
+                
+                
+                
+                    }) 
+            
+                e.preventDefault()
+            
+            })
+            
+            
         
         })
-
-
-
-    })   
-
-
-})
 
     
 
@@ -80,11 +139,11 @@ function updateSignUpForms() {
 
 
     <div class="sign-up-form-container">
-        <form id="update-sign-up-forms" class="sign-up" 
+        <form id="admin-update-sign-up-forms" class="sign-up" 
      method="put">
 
     <fieldset>
-    <legend>CREATE AN ACCOUNT</legend>
+    <legend>ADMIN UPDATE YOUR ACCOUNT</legend>
 
     <label for="title" class="title">Title</label><br />
  <select id="title" name="title" value = {account.title} required>
@@ -128,19 +187,7 @@ required
 
 
 <label for="pwd" class="sign-up-form-pwd">Confirm Password:</label><br />
-<input type="password" name="passwrod" class="pwd" id="pwd"  required/>
-
-<label for="officer" class="sign-up-form-officer">Choose Doctor</label><br />
- <select id="doctor" name="doctor" required>
-     <option value="chosee doctor">Please choose a doctor</option>
-     <option value="officer1" selected >Dr. Bernard Same</option>
- </select>
- <br />
-
-<label for="date" class="sign-up-form-date">Book Appointment Date</label><br />
-<input type="date" name="date" class="sign-up-form-date" required
-value={account.bookDate} 
-/><br />
+<input type="password" name="passwrod" class="pwd" id="pwd" required />
 
 
  <input type="submit" id="sign-up-from-submit" value="Update Account" 

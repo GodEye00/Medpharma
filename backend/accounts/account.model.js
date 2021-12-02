@@ -9,6 +9,7 @@ const schema = new Schema({
     lastName: { type: String, required: true },
     bookDate: {type: Date, required: true},
     symptoms: {type: String, required: true},
+    consultation: {type: String, required: false},
     doctor: {type: String, required: true},
     acceptTerms: Boolean,
     role: { type: String, required: false },

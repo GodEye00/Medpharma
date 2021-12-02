@@ -14,12 +14,12 @@ function loginForm() {
 
         var ssoAction = function (data) { 
 
-            if(data.role === "User") {
+            if(data.role === "Nurse") {
 
-                window.open("http://localhost:3000/user", "_self") 
+                window.open("http://localhost:3000/nurse", "_self") 
             }
       
-         else if (data.role === "Admin") {
+         else if (data.role === "Doctor") {
             window.open("http://localhost:3000/admin", "_self") 
          }
 
@@ -54,7 +54,7 @@ function makeBaseAuth(user, pswd){
 
     $.ajax ( {
     type: "POST",
-    url: "http://localhost:4000/accounts/authenticate",
+    url: "http://localhost:5000/admin_accounts/authenticate",
     data: form.serialize(),
     
     dataType: " json ",
@@ -116,18 +116,21 @@ function makeBaseAuth(user, pswd){
 
 
     return (
+        <div id="background">
         <div className="loginFormContainer" id="admin-login">
             <form id ="login-Form" className="login" name="form"
-                action="http://localhost:4000/accounts/authenticate" method="POST" > 
-                <label for="name">Email</label>
-                <input className="email" type="email" name="email" />
-                <label for="pwd" className="password-label">Password</label>
-                <input className="pwd" type="password"  name="password" />
+                action="http://localhost:5000/admin_accounts/authenticate" method="POST" > 
+                <label for="name" className="admin">Email</label>
+                <input className="email admin" type="email" name="email" />
+                <label for="pwd" className="password-label admin">Password</label>
+                <input className="pwd admin" type="password"  name="password" />
                 <input id="login" type="submit" value="Login" 
-                className="loginLogoutCreateUpdateDeleteFormSubmit log"/>
+                className="loginLogoutCreateUpdateDeleteFormSubmit log admin"/>
             </form>
 
              </div> 
+
+             </div>
 
     )
 }

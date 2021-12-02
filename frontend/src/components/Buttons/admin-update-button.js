@@ -1,4 +1,4 @@
-import UpdateDetails from "../Form/update-signUp-forms"
+import UpdateDetails from "../Form/admin-update-signUp"
 
 import "./update-button.css"
 

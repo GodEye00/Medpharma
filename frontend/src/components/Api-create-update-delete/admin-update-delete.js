@@ -1,4 +1,4 @@
-import UpdateButton from "../Buttons/admin-update"
+import UpdateButton from "../Buttons/admin-update-button"
 import Delete from "../Buttons/admin-delete"
 
 import "./admin-update-delete.css"
@@ -16,7 +16,7 @@ function createUpdateDelete(id) {
 
         </div>
 
-            <div className="delete"> <Delete id = {id}/>
+            <div className="delete"> <Delete />
             
             </div>
 

@@ -4,10 +4,10 @@ div#container {
     font-family: Georgia, 'Times New Roman',
      Times, serif, 'Times New Roman', Times, serif,
      sans-serif;
-    background-color: rgb(0, 174, 255);
     box-shadow:  3px 3px 3px 3px #777777;
     margin-top: 0%;
     float: left;
+
     
 }
 
@@ -24,7 +24,6 @@ div.consults-and-symptoms {
 }
 
 div#doctor-consulation {
-    background-color: rgb(0, 255, 157);
     margin-bottom: 2%;
     height: max-content;
     width: 100%;

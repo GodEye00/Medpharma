@@ -18,34 +18,14 @@ function _delete() {
     window.addEventListener('load', () => {  
  
 
-     
-
-       
-
-
-$('#delete').on( 'submit', function(e) {
+$('#delete').on( 'click', function(e) {
 
     e.preventDefault()
 
 
-
-function makeBaseAuth(user, pswd){ 
-    var token = user + ':' + pswd;
-    var hash = "";
-    if (btoa) {
-       hash = btoa(token);
-    }
-    return "Basic " + hash;
- }
-
- var mail = $('.email').val().toString()
- var pwd = $('.pwd').val().toString()
-    
-
     $.ajax ( {
     type: "DELETE",
     url: "http://localhost:4000/accounts/:" + account.id,
-    data: account,
     
     dataType: " json ",
    
@@ -55,7 +35,6 @@ function makeBaseAuth(user, pswd){
         withCredentials: true
     },
     beforeSend: function(xhr) { 
-        xhr.setRequestHeader('Authorization', makeBaseAuth(mail, pwd));
 
         swal('warning', 'Irreversible action!', 'Are you sure you want to delete your account?')
 
@@ -104,7 +83,7 @@ function makeBaseAuth(user, pswd){
 
 
 return (
-    <button id="delete" type="submit"
+    <button id="delete" 
     className="loginLogoutCreateUpdateDeleteFormSubmit"
             >Delete  Account</button>
 )

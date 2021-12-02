@@ -19,7 +19,7 @@ router.get('/',  getAll);
 router.get('/:id', authorize(), getById);
 router.post('/', authorize(Role.Admin), createSchema, create);
 router.put('/:id', authorize(), updateSchema, update);
-router.delete('/:id', authorize(), _delete);
+router.delete('/:id', _delete);
 
 
 
@@ -183,7 +183,6 @@ function createSchema(req, res, next) {
         confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
         symptoms: Joi.string().required(),
         doctor: Joi.string().required(),
-        role: Joi.string().valid(Role.Admin, Role.User),
         bookDate: Joi.date().required(),
 
     });
@@ -205,6 +204,8 @@ function updateSchema(req, res, next) {
         password: Joi.string().min(6).empty(''),
         confirmPassword: Joi.string().valid(Joi.ref('password')).empty(''),
         symptoms: Joi.string(),
+        consultation: Joi.string(),
+        bookDate: Joi.date(),
         doctor: Joi.string()
     };
 
@@ -234,7 +235,7 @@ function _delete(req, res, next) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    accountService.delete(req.params.id)
+    accountService._delete(req.params.id)
         .then(() => res.json({ message: 'Account deleted successfully' }))
         .catch(next);
 }

@@ -1,4 +1,27 @@
 button#delete {
     width: 100%;
     height: 100%;
+    background-color: orangered;
+}
+
+button#delete:hover {
+    background-color: red;
+}
+
+button#delete:active {
+    border: orange 2px solid;
+}
+
+button#admin-delete {
+    width: 100%;
+    height: 100%;
+    background-color: orangered;
+}
+
+button#admin-delete:hover {
+    background-color: red;
+}
+
+button#admin-delete:active {
+    border: orange 2px solid;
 }

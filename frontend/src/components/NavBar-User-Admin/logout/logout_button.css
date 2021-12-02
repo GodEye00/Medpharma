@@ -1,7 +1,7 @@
-button#logout {
+button#logout, button#admin-logout {
     float: right;
-    height: 50px;
-    width: 10%;
+    height: max-content;
+    width: max-content;
     margin-right: 3%;
     margin-top: 2%;
   

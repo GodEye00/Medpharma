@@ -26,7 +26,9 @@ function Delete() {
             $.ajax ( {
             type: "DELETE",
             url: "http://localhost:4000/accounts/:" + account.id,
-            data: account,
+            data: {
+                id : account.id
+            },
             
             dataType: " json ",
            

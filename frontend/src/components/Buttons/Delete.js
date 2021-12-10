@@ -26,6 +26,9 @@ $('#delete').on( 'click', function(e) {
     $.ajax ( {
     type: "DELETE",
     url: "http://localhost:4000/accounts/:" + account.id,
+    data: {
+        id : account.id
+    },
     
     dataType: " json ",
    
@@ -63,9 +66,9 @@ $('#delete').on( 'click', function(e) {
         
     },
 
-    error: function() {
+    error: function(data) {
 
-        swal('error', 'Error', 'Something went wrong. Retry')
+        swal('error', 'Error', 'Something went wrong. Retry' + JSON.stringify(data))
     }
 
 

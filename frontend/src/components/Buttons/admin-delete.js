@@ -26,6 +26,9 @@ $('#admin-delete').on( 'click', function(e) {
     $.ajax ( {
     type: "DELETE",
     url: "http://localhost:5000/admin_accounts/:" + account.id,
+    data: {
+        id : account.id
+    },
     
     dataType: " json ",
    
